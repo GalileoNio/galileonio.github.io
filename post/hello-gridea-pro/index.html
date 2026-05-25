@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1779718959">
+<link rel="shortcut icon" href="/favicon.ico?v=1779719209">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="/styles/main.css">
 
@@ -43,6 +43,17 @@
 <meta name="twitter:title" content="念念不忘，必有回响 —— Gridea Pro，我们回来了">
 <meta name="twitter:description" content="你好，欢迎来到 Gridea Pro。 如果你正在读这篇文章，说明你已经迈出了最重要的一步——决定拥有一个属于自己的博客。">
 <meta name="twitter:image" content="/images/avatar.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="GalileoNio's 猫窝">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
   <body>
     <div id="app" class="main">
@@ -50,19 +61,48 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1779718959" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1779719209" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
       </a>
     </div>
     <div class="right">
+      <i class="icon icon-search-outline" title="搜索" @click="openSearch"></i>
       <transition name="fade">
         <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
       </transition>
     </div>
   </div>
 </div>
+
+<transition name="fade">
+  <div class="search-container" style="display: none;" v-show="searchVisible" @click.self="closeSearch">
+    <div class="search-panel">
+      <div class="search-header">
+        <input
+          ref="searchInput"
+          class="search-input"
+          type="search"
+          v-model.trim="searchQuery"
+          @input="searchPosts"
+          @keyup.esc="closeSearch"
+          placeholder="搜索标题和正文"
+        >
+        <i class="icon icon-close-outline" title="关闭" @click="closeSearch"></i>
+      </div>
+      <div class="search-body">
+        <div class="search-empty" v-if="searchLoading">正在搜索...</div>
+        <div class="search-empty" v-else-if="searchQuery && searchResults.length === 0">没有找到相关文章</div>
+        <div class="search-empty" v-else-if="!searchQuery">输入关键词开始搜索</div>
+        <a class="search-result" v-for="post in searchResults" :href="post.link" :key="post.link">
+          <div class="search-result-title" v-html="post.highlightTitle"></div>
+          <div class="search-result-content" v-html="post.highlightContent"></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</transition>
 
 <transition name="fade">
   <div class="menu-container" style="display: none;" v-show="menuVisible">
@@ -75,7 +115,7 @@
         
       
         
-          <a href="/post" class="menu purple-link">
+          <a href="/posts" class="menu purple-link">
             博客
           </a>
         
@@ -236,6 +276,107 @@ var app = new Vue({
   el: '#app',
   data: {
     menuVisible: false,
+    searchVisible: false,
+    searchLoading: false,
+    searchQuery: '',
+    searchIndex: [],
+    searchResults: [],
+  },
+  methods: {
+    openSearch: function () {
+      this.searchVisible = true
+      this.menuVisible = false
+      this.loadSearchIndex()
+      this.$nextTick(function () {
+        if (this.$refs.searchInput) {
+          this.$refs.searchInput.focus()
+        }
+      })
+    },
+    closeSearch: function () {
+      this.searchVisible = false
+    },
+    loadSearchIndex: function () {
+      var self = this
+
+      if (self.searchIndex.length || self.searchLoading) {
+        return
+      }
+
+      self.searchLoading = true
+      fetch('/api/search.json')
+        .then(function (response) {
+          if (!response.ok) {
+            throw new Error('Failed to load search index')
+          }
+          return response.json()
+        })
+        .then(function (posts) {
+          self.searchIndex = Array.isArray(posts) ? posts : []
+          self.searchPosts()
+        })
+        .catch(function () {
+          self.searchIndex = []
+        })
+        .finally(function () {
+          self.searchLoading = false
+        })
+    },
+    searchPosts: function () {
+      var query = this.searchQuery.toLowerCase()
+
+      if (!query) {
+        this.searchResults = []
+        return
+      }
+
+      this.searchResults = this.searchIndex
+        .filter(function (post) {
+          return (post.title || '').toLowerCase().indexOf(query) > -1 ||
+            (post.content || '').toLowerCase().indexOf(query) > -1
+        })
+        .slice(0, 10)
+        .map(function (post) {
+          return {
+            link: post.link,
+            highlightTitle: app.highlightSearchText(post.title || '', query),
+            highlightContent: app.highlightSearchText(app.createSearchExcerpt(post.content || '', query), query),
+          }
+        })
+    },
+    createSearchExcerpt: function (content, query) {
+      var lowerContent = content.toLowerCase()
+      var index = lowerContent.indexOf(query)
+
+      if (index === -1) {
+        return content.slice(0, 120)
+      }
+
+      var start = Math.max(index - 45, 0)
+      var end = Math.min(index + query.length + 75, content.length)
+      return (start > 0 ? '...' : '') + content.slice(start, end) + (end < content.length ? '...' : '')
+    },
+    highlightSearchText: function (text, query) {
+      var escapedText = this.escapeHtml(text)
+      var escapedQuery = this.escapeRegExp(query)
+
+      if (!escapedQuery) {
+        return escapedText
+      }
+
+      return escapedText.replace(new RegExp('(' + escapedQuery + ')', 'ig'), '<mark>$1</mark>')
+    },
+    escapeHtml: function (text) {
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+    },
+    escapeRegExp: function (text) {
+      return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    },
   },
 })
 
