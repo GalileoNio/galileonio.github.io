@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1779718659">
+<link rel="shortcut icon" href="/favicon.ico?v=1779718959">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="/styles/main.css">
 
@@ -50,7 +50,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1779718659" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1779718959" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -223,21 +223,7 @@
 
         
           <section class="giscus-container">
-            <script src="https://giscus.app/client.js"
-              data-repo="GalileoNio/galileonio.github.io"
-              data-repo-id="R_kgDONjz3SA"
-              data-category="Announcements"
-              data-category-id="DIC_kwDONjz3SM4C9z64"
-              data-mapping="pathname"
-              data-strict="0"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="top"
-              data-theme="preferred_color_scheme"
-              data-lang="zh-CN"
-              crossorigin="anonymous"
-              async>
-            </script>
+            <div id="giscus-container"></div>
           </section>
         
 
@@ -283,6 +269,30 @@ var app = new Vue({
 
   
 
+  
+    <script>
+      var giscusContainer = document.getElementById('giscus-container')
+
+      if (giscusContainer) {
+        var giscusScript = document.createElement('script')
+        giscusScript.src = 'https://giscus.app/client.js'
+        giscusScript.setAttribute('data-repo', 'GalileoNio/galileonio.github.io')
+        giscusScript.setAttribute('data-repo-id', 'R_kgDONjz3SA')
+        giscusScript.setAttribute('data-category', 'Announcements')
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDONjz3SM4C9z64')
+        giscusScript.setAttribute('data-mapping', 'pathname')
+        giscusScript.setAttribute('data-strict', '0')
+        giscusScript.setAttribute('data-reactions-enabled', '1')
+        giscusScript.setAttribute('data-emit-metadata', '0')
+        giscusScript.setAttribute('data-input-position', 'top')
+        giscusScript.setAttribute('data-theme', 'preferred_color_scheme')
+        giscusScript.setAttribute('data-lang', 'zh-CN')
+        giscusScript.crossOrigin = 'anonymous'
+        giscusScript.async = true
+        giscusContainer.appendChild(giscusScript)
+      }
+    </script>
+  
 
 
 
