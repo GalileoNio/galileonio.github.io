@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://galileolion.github.io/sitemap.xml
+Sitemap: https://galileonio.github.io/sitemap.xml
