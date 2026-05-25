@@ -1308,6 +1308,13 @@ a.purple-link {
   display: inline-block;
   font-size: 22px;
 }
+.giscus-container {
+  padding: 32px 16px;
+}
+.giscus-container .giscus,
+.giscus-container .giscus-frame {
+  width: 100%;
+}
 .post-content h1,
 .post-content h2,
 .post-content h3,
