@@ -1097,6 +1097,7 @@ summary {
 }
 .site-header .left {
   display: flex;
+  min-width: 0;
 }
 .site-header .left .avatar {
   border-radius: 50%;
@@ -1105,6 +1106,9 @@ summary {
   margin: 0 16px;
   font-size: 24px;
   line-height: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .site-header .right .icon {
   font-size: 24px;
@@ -1113,9 +1117,33 @@ summary {
 .site-header .right {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
-.site-header .right .icon + .icon {
+.site-header .right .icon + .icon,
+.site-header .right .search-toggle + .fade-transition,
+.site-header .right .search-toggle + span,
+.site-header .right .search-toggle + .icon {
   margin-left: 16px;
+}
+.search-toggle,
+.search-close {
+  border: 0;
+  background: transparent;
+  color: var(--c-base-black);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.search-toggle {
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+}
+.search-toggle .icon,
+.search-close .icon {
+  font-size: 24px;
 }
 .search-container {
   display: none;
@@ -1127,6 +1155,9 @@ summary {
   z-index: 1024;
   background: rgba(255, 255, 255, 0.96);
   padding: 32px 16px;
+}
+.search-container.is-active {
+  display: block;
 }
 .search-panel {
   max-width: 768px;
@@ -1141,12 +1172,10 @@ summary {
   padding: 16px;
   border-bottom: 1px solid #f0f0f0;
 }
-.search-header .icon {
+.search-close {
   flex-shrink: 0;
   margin-left: 16px;
-  font-size: 24px;
   color: var(--c-base-blacklight);
-  cursor: pointer;
 }
 .search-input {
   flex: 1;
@@ -1393,6 +1422,90 @@ a.purple-link {
 .next-post .post-title {
   display: inline-block;
   font-size: 22px;
+}
+.page-title-container {
+  padding: 32px 0 8px;
+}
+.page-title {
+  font-size: 32px;
+  color: var(--c-base-black);
+}
+.empty-state {
+  padding: 48px 0;
+  color: var(--c-base-blacklight);
+  text-align: center;
+}
+.links-container {
+  padding: 24px 0 32px;
+}
+.friend-card {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+.friend-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 16px;
+}
+.friend-avatar-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--c-base-purple);
+  font-weight: 600;
+}
+.friend-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--c-base-black);
+}
+.friend-info strong {
+  font-size: 18px;
+  line-height: 1.4;
+}
+.friend-info span {
+  color: var(--c-base-blacklight);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.memos-container {
+  padding: 24px 0 32px;
+}
+.memo-card {
+  padding: 20px 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+.memo-content {
+  color: var(--c-base-blacklight);
+  line-height: 1.725;
+}
+.memo-content p {
+  margin-bottom: 12px;
+}
+.memo-content p:last-child {
+  margin-bottom: 0;
+}
+.memo-tags {
+  margin-top: 12px;
+}
+.memo-tag {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  color: var(--c-base-purple);
+  font-size: 13px;
+}
+.memo-date {
+  display: block;
+  margin-top: 12px;
+  color: var(--c-base-gray);
+  font-size: 12px;
 }
 .giscus-container {
   padding: 32px 16px;
