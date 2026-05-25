@@ -3,6 +3,7 @@
   "name": "GalileoNio's 猫窝",
   "short_name": "GN🐱",
   "description": "Notes, code, vehicles, and everything in between.",
+  "lang": "zh-cn",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
