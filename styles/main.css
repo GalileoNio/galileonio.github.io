@@ -1535,6 +1535,16 @@ a.purple-link {
   border-radius: 2px;
   margin: 16px auto;
 }
+.post-content img[src*="coolapk_emotion_"] {
+  display: inline;
+  width: 1.35em;
+  height: 1.35em;
+  max-width: none;
+  margin: 0 0.12em;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: -0.25em;
+}
 .post-content p {
   line-height: 1.725;
   margin-bottom: 16px;
