@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<meta name="generator" content="Gridea Pro 0.0.0-dev">
+<title>通过 Rockbox，让你的 M3K 焕发新生 | GalileoNio&#39;s 猫窝</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="/favicon.ico?v=1779775446">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+  
+
+  
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+
+
+
+  <meta name="description" content="#飞傲m3k# #Rockbox# ![img](tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@108&amp;hellip;">
+<link rel="canonical" href="https://galileonio.github.io/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"通过 Rockbox，让你的 M3K 焕发新生","url":"https://galileonio.github.io/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/","description":"#飞傲m3k# #Rockbox# ![img](tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@108\u0026hellip;","datePublished":"2026-05-26T14:03:16Z","dateModified":"2026-05-26T14:03:16Z","author":{"@type":"Person","name":"GalileoNio's 猫窝"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"GalileoNio's 猫窝"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://galileonio.github.io","name":"GalileoNio's 猫窝","position":1},{"@type":"ListItem","item":"https://galileonio.github.io/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/","name":"通过 Rockbox，让你的 M3K 焕发新生","position":2}]}</script>
+<meta property="og:title" content="通过 Rockbox，让你的 M3K 焕发新生">
+<meta property="og:description" content="#飞傲m3k# #Rockbox# ![img](tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@108&amp;hellip;">
+<meta property="og:url" content="https://galileonio.github.io/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GalileoNio's 猫窝">
+<meta property="og:image" content="/images/avatar.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://galileonio.github.io/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/">
+<meta name="twitter:title" content="通过 Rockbox，让你的 M3K 焕发新生">
+<meta name="twitter:description" content="#飞傲m3k# #Rockbox# ![img](tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@108&amp;hellip;">
+<meta name="twitter:image" content="/images/avatar.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="GalileoNio's 猫窝">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
+</head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://galileonio.github.io">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1779775446" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://galileonio.github.io">
+        <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
+      </a>
+    </div>
+    <div class="right">
+      <button class="search-toggle" type="button" title="搜索" aria-label="搜索" data-search-toggle>
+        <i class="icon icon-search-outline"></i>
+      </button>
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<div class="search-container" data-search-container>
+    <div class="search-panel">
+      <div class="search-header">
+        <input
+          id="search-input"
+          class="search-input"
+          type="search"
+          placeholder="搜索标题和正文"
+        >
+        <button class="search-close" type="button" title="关闭" aria-label="关闭" data-search-close>
+          <i class="icon icon-close-outline"></i>
+        </button>
+      </div>
+      <div class="search-body" id="search-results">
+        <div class="search-empty">输入关键词开始搜索</div>
+      </div>
+    </div>
+  </div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+        
+          <a href="/post/" class="menu purple-link">
+            博客
+          </a>
+        
+      
+        
+        
+          <a href="/memos" class="menu purple-link">
+            闪念
+          </a>
+        
+      
+        
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+        
+          <a href="/links" class="menu purple-link">
+            友链
+          </a>
+        
+      
+        
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">通过 Rockbox，让你的 M3K 焕发新生</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2026-05-26</span>
+            
+          </div>
+          <div class="post-content" v-pre>
+            <p><a href="https://www.coolapk.com/t/%E9%A3%9E%E5%82%B2m3k?type=12">#飞傲m3k#</a> <a href="https://www.coolapk.com/t/Rockbox?type=12">#Rockbox#</a></p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_e5daa8bf_9002_8172@1080x100.jpeg.m.jpg'"></p>
+<p>M3K 在学校被我的同学喷为智商税（泪目），官方也消极怠工，一年挤一次牙膏。闲来无事刷酷安发现 M3K 设备区全是出设备的。在所剩无几的测评中我找到 <a href="https://www.coolapk.com/u/%E8%AF%A5%E7%94%A8%E6%88%B7%E6%B6%89%E5%AB%8C%E6%BB%91%E7%A8%BD">@该用户涉嫌滑稽</a> 的开箱图文的评论区：</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_5966cc84_9002_8174@1080x1184.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_5966cc84_9002_8174@1080x1184.jpeg.m.jpg'"></p>
+<p>@该用户涉嫌滑稽 的开箱图文</p>
+<p>本着试试又不花钱的原则，我开始了解这个从没见过的系统<img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/coolapk_emotion_67_mojinghuaji.png" alt="墨镜滑稽" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_67_mojinghuaji.png'">。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_8712bd41_9002_8175@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_8712bd41_9002_8175@1080x100.jpeg.m.jpg'"></p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_9c49acfb_9002_8177@400x123.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_9c49acfb_9002_8177@400x123.jpeg.m.jpg'"></p>
+<p>Rockbox 是一个有独立内核的开源系统，可以安装在众多数字音频播放器上，从像素级别显示屏的播放器到 iPod，Rockbox 都能轻松上任。Rockbox 不会顶掉厂商自带的系统，而是以双系统的形式在开机时选择要进入哪一个。</p>
+<p>Rockbox 自带丰富的应用程序和游戏，不过使用体验嘛<img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/coolapk_emotion_64_shounuehuaji.png" alt="受虐滑稽" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_64_shounuehuaji.png'">……也就那样。（我不觉得在没有触屏的播放器上用画图是个好主意。<img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/coolapk_emotion_66_doujiyanhuaji.png" alt="斗鸡眼滑稽" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_66_doujiyanhuaji.png'">透露了什么。）有些功能可能是自带系统（oem)没有的。</p>
+<p>以我们这次的主角：M3K 为例，Rockbox 比 Fiio 的系统多了观看视频和正常的显示歌词的能力（和更多）。不过像 MPEGplayer 之类的插件包含在系统中，选择一个视频文件打开就能播放，但是在应用列表中是找不到的。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_163a03fd_9002_8179@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_163a03fd_9002_8179@1080x100.jpeg.m.jpg'"></p>
+<p>但是官方并没有该设备的官方稳定包，于是我在官方论坛寻找，终于找到大佬制作的包（见参考资料2）。<br />
+可以在作者的首页下载（貌似作者是个俄罗斯人）：<br />
+<a href="http://xvtx.ru/rockbox/download.htm">查看链接</a></p>
+<p>我已经下载好了，但是我不确定包有没有问题（虽然我能正常使用），建议还是自己下载。我的分享：<br />
+<a href="https://xiayuansu.lanzous.com/b00nvorja">查看链接</a><br />
+密码:79kv</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_9964c8be_9002_8181@1080x161.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_9964c8be_9002_8181@1080x161.jpeg.m.jpg'"></p>
+<p>Mega 网盘在国内是北墙的，这里简要讲一下我实践探索出的方法：<br />
+1.先飞进入文件分享的下载页面，然后停机，下载的 IP 地址会变回自己的（因为 mega 限制 IP 的下载流量，公共飞机的流量一般是用完的），再点击下载就好，到最后解密的时候再坐飞机才能正常解密。要使用一些正常的浏览器（不要 flyme 自带的）。</p>
+<p>2.下 mega 的客户端（应用汇有），设置里面勾选不使用http（我感觉说反了，应该是翻译错误），然后飞机连接网页，将文件保存到自己盘里，然后停机，在客户端里下载。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_1528f4de_9002_8182@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_1528f4de_9002_8182@1080x100.jpeg.m.jpg'"></p>
+<p>警告：只要你想刷机，就要做好可能成砖的准备！也建议备好一个官方的固件，以防不测。可以按照参考资料4的官方教程操作，出现问题里面也有部分解决方法。这里简要介绍步骤。</p>
+<p>将下载下来的压缩包打开，连接电脑或者手机，将压缩包里面的 M3K.fw 文件拷贝到你插入 M3K 的 SD卡中（SD卡最好是 FAT32 格式）。关机后，将此卡插入M3K卡槽中，同时按住音量“+”和“电源/锁屏”键，直到弹出TF卡升级对话框再松开手，升级进度条完成后会自动重启播放器。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_2aeca8e3_9002_8184@1276x535.png.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_2aeca8e3_9002_8184@1276x535.png.m.jpg'"></p>
+<p>大致的更新过程</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_3067958c_9002_8185@1620x2160.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_3067958c_9002_8185@1620x2160.jpeg.m.jpg'"></p>
+<p>更新完成后的画面，也是之后每次开机会经过的画面</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_ccc96865_9008_1464@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_ccc96865_9008_1464@1080x100.jpeg.m.jpg'"></p>
+<p>建议先更换字体（在设置-主题设置里）为18号的 Fixed 再更换语言，如果出现了大方块，找一下一个A的图标，那就是更换语言。初用会发现快进快退不了，其实要去设置里设置快进快退的跳转步长值，对我来说5就够了。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_bfe06647_9008_1465@1240x1586.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_bfe06647_9008_1465@1240x1586.jpeg.m.jpg'"></p>
+<p>获得山寨MP3字体体验【滑稽】</p>
+<p>如果没有上述菜单，可能需要你在应用程序里找到 settings_dumper（似乎我也是点了这个才找到字体更换的），但是使用后主题会崩，需要自己调整，所以可以斟酌一下，不影响使用的话英语也无妨<img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/coolapk_emotion_1011_hengji.png" alt="哼唧" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_1011_hengji.png'">。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_b7c57554_9008_1467@220x176.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_b7c57554_9008_1467@220x176.jpeg.m.jpg'"></p>
+<p>主题崩掉就变成了最原版的默认皮肤，并且状态栏会有点不正常。图为默认主题示例。</p>
+<p>如果显示文本乱码，就在设置里调一下文字编码，基本上 GB 和万国码调一下就好。</p>
+<p>暂时先讲到这里，到这里基本上就没有什么问题了，大家就自己体验摸索吧。关机需要长按电源键，闪屏两次（看按键灯也行）后才算成功关机。如果你有兴趣，可以帮助翻译 Rockbox：<br />
+<a href="https://translate.rockbox.org/">查看链接</a><br />
+更多资料在官网和它的维基搜索：<br />
+<a href="https://www.rockbox.org/">查看链接</a></p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_541dc1b8_9008_1469@1080x728.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_541dc1b8_9008_1469@1080x728.jpeg.m.jpg'"></p>
+<p>Rockbox Wiki 首页</p>
+<p>这篇图文也写了好几天了，中间还经历了开学月考，不过总算是没有烂尾。毕竟我也上高三了，如果还有时间我就摸索一下，没有时间可能大学才会再更新了。主题和插件其实我也不是很懂，希望有大佬补充。最后求酷安老哥<img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/coolapk_emotion_101_pyjiaoyi.png" alt="py交易" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_101_pyjiaoyi.png'">。</p>
+<p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_be297bcf_9008_1471@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_be297bcf_9008_1471@1080x100.jpeg.m.jpg'"></p>
+<p>维基百科：Rockbox<br />
+<a href="https://en.wanweibaike.com/wiki-Rockbox">查看链接</a></p>
+<p>Rockbox 论坛：M3K<br />
+<a href="https://forums.rockbox.org/index.php/topic,52917.0.html?PHPSESSID=9b9b5f5e2468dacacbb82e7e2756c333">查看链接</a></p>
+<p>Rockbox 插件中心：MPG 视频播放器<br />
+<a href="https://www.rockbox.org/wiki/PluginMpegplayer">查看链接</a></p>
+<p>飞傲官网：如何升级 M3K<br />
+<a href="https://www.fiio.com/newsinfo/76076.html">查看链接</a></p>
+<p>飞傲：M3K<br />
+<a href="https://www.fiio.com/m3k">查看链接</a></p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="/post/san-xing-shou-ji-wu-twrp-shua-ji-fang-fa-yan-jiu/">
+              <h3 class="post-title">
+                下一篇：三星手机无 twrp 刷机方法研究
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+        
+
+        
+          <section class="giscus-container">
+            <div id="giscus-container"></div>
+          </section>
+        
+
+        
+      
+
+      <div class="site-footer">
+  <div class="slogan">Notes, code, vehicles, and everything in between.</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by Gridea Pro | <a class="rss" href="/feed.xml" target="_blank">RSS</a>
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+;(function () {
+  var searchToggle = document.querySelector('[data-search-toggle]')
+  var searchContainer = document.querySelector('[data-search-container]')
+  var searchClose = document.querySelector('[data-search-close]')
+  var searchInput = document.getElementById('search-input')
+  var searchResults = document.getElementById('search-results')
+  var searchIndex = []
+  var searchLoaded = false
+  var searchLoading = false
+
+  if (!searchToggle || !searchContainer || !searchInput || !searchResults) {
+    return
+  }
+
+  function openSearch() {
+    searchContainer.classList.add('is-active')
+    if (app) {
+      app.menuVisible = false
+    }
+    loadSearchIndex()
+    setTimeout(function () {
+      searchInput.focus()
+    }, 0)
+  }
+
+  function closeSearch() {
+    searchContainer.classList.remove('is-active')
+  }
+
+  function loadSearchIndex() {
+    if (searchLoaded || searchLoading) {
+      return
+    }
+
+    searchLoading = true
+    renderSearchMessage('正在搜索...')
+    fetch('/api/search.json')
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Failed to load search index')
+        }
+        return response.json()
+      })
+      .then(function (posts) {
+        searchIndex = Array.isArray(posts) ? posts : []
+        searchLoaded = true
+        searchPosts()
+      })
+      .catch(function () {
+        renderSearchMessage('搜索数据加载失败')
+      })
+      .finally(function () {
+        searchLoading = false
+      })
+  }
+
+  function searchPosts() {
+    var query = searchInput.value.trim().toLowerCase()
+
+    if (!query) {
+      renderSearchMessage('输入关键词开始搜索')
+      return
+    }
+
+    if (!searchLoaded) {
+      renderSearchMessage('正在搜索...')
+      return
+    }
+
+    var results = searchIndex
+      .filter(function (post) {
+        return (post.title || '').toLowerCase().indexOf(query) > -1 ||
+          (post.content || '').toLowerCase().indexOf(query) > -1
+      })
+      .slice(0, 10)
+
+    if (!results.length) {
+      renderSearchMessage('没有找到相关文章')
+      return
+    }
+
+    searchResults.innerHTML = results.map(function (post) {
+      var title = highlightSearchText(post.title || '', query)
+      var content = highlightSearchText(createSearchExcerpt(post.content || '', query), query)
+      return '<a class="search-result" href="' + escapeAttribute(post.link || '#') + '">' +
+        '<div class="search-result-title">' + title + '</div>' +
+        '<div class="search-result-content">' + content + '</div>' +
+      '</a>'
+    }).join('')
+  }
+
+  function renderSearchMessage(message) {
+    searchResults.innerHTML = '<div class="search-empty">' + escapeHtml(message) + '</div>'
+  }
+
+  function createSearchExcerpt(content, query) {
+    var lowerContent = content.toLowerCase()
+    var index = lowerContent.indexOf(query)
+
+    if (index === -1) {
+      return content.slice(0, 120)
+    }
+
+    var start = Math.max(index - 45, 0)
+    var end = Math.min(index + query.length + 75, content.length)
+    return (start > 0 ? '...' : '') + content.slice(start, end) + (end < content.length ? '...' : '')
+  }
+
+  function highlightSearchText(text, query) {
+    var escapedText = escapeHtml(text)
+    var escapedQuery = escapeRegExp(query)
+    return escapedText.replace(new RegExp('(' + escapedQuery + ')', 'ig'), '<mark>$1</mark>')
+  }
+
+  function escapeHtml(text) {
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;')
+  }
+
+  function escapeAttribute(text) {
+    return escapeHtml(text).replace(/`/g, '&#096;')
+  }
+
+  function escapeRegExp(text) {
+    return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  }
+
+  searchToggle.addEventListener('click', openSearch)
+  if (searchClose) {
+    searchClose.addEventListener('click', closeSearch)
+  }
+  searchContainer.addEventListener('click', function (event) {
+    if (event.target === searchContainer) {
+      closeSearch()
+    }
+  })
+  searchInput.addEventListener('input', searchPosts)
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      closeSearch()
+    }
+  })
+})()
+
+</script>
+
+
+
+  
+
+  
+
+  
+    <script>
+      var giscusContainer = document.getElementById('giscus-container')
+
+      if (giscusContainer) {
+        var giscusScript = document.createElement('script')
+        giscusScript.src = 'https://giscus.app/client.js'
+        giscusScript.setAttribute('data-repo', 'GalileoNio/galileonio.github.io')
+        giscusScript.setAttribute('data-repo-id', 'R_kgDONjz3SA')
+        giscusScript.setAttribute('data-category', 'Announcements')
+        giscusScript.setAttribute('data-category-id', 'DIC_kwDONjz3SM4C9z64')
+        giscusScript.setAttribute('data-mapping', 'pathname')
+        giscusScript.setAttribute('data-strict', '0')
+        giscusScript.setAttribute('data-reactions-enabled', '1')
+        giscusScript.setAttribute('data-emit-metadata', '0')
+        giscusScript.setAttribute('data-input-position', 'top')
+        giscusScript.setAttribute('data-theme', 'preferred_color_scheme')
+        giscusScript.setAttribute('data-lang', 'zh-CN')
+        giscusScript.crossOrigin = 'anonymous'
+        giscusScript.async = true
+        giscusContainer.appendChild(giscusScript)
+      }
+    </script>
+  
+
+
+
+  <script>console.log("\n%c ✦ Gridea Pro v0.0.0-dev %c · Theme: fly v1.0.0 · https://gridea.pro %c\n","color:#fadfa3;background:#111111;padding:9px 14px;border-radius:4px 0 0 4px;font-weight:500;font-size:12px","color:#e05c00;background:#fff3ec;padding:9px 14px;border-radius:0 4px 4px 0;font-size:11px","")</script>
+</body>
+</html>
