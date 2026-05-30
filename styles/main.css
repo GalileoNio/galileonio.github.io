@@ -1336,6 +1336,17 @@ a.purple-link {
   color: var(--c-base-purple);
   font-size: 13px;
 }
+.home-sidebar-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--c-base-purple);
+}
+.home-sidebar-more .icon-arrow-ios-forward-outline {
+  font-size: 18px;
+}
 .home-memos-list {
   padding-top: 4px;
 }
