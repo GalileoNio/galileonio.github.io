@@ -1614,11 +1614,14 @@ a.purple-link {
   padding: 0 0 32px;
 }
 .post-detail .feature-container {
-  padding-top: 56.25%;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
   border-radius: 2px;
   box-shadow: 0 0 30px #eee;
+}
+.post-detail .feature-container .post-feature-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .next-post {
   text-align: center;
