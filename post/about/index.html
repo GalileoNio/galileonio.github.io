@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780117142">
+<link rel="shortcut icon" href="/favicon.ico?v=1780117457">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780117142">
+<link rel="stylesheet" href="/styles/main.css?v=1780117457">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -60,12 +60,12 @@
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
   <body>
-    <div id="app" class="main">
+    <div id="app" class="main post-main">
       <div class="site-header-container">
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117142" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117457" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -159,16 +159,18 @@
 </transition>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">关于</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2026-05-26</span>
-            
-          </div>
-          <div class="post-content" v-pre>
-            <!-- 这是一个关于页面的模板，你可以根据自己的风格随意修改。开始写你自己的故事吧。 -->
+      <div class="content-container post-content-container">
+        <div class="post-layout has-comment-sidebar">
+          <main class="post-primary">
+            <div class="post-detail">
+              
+              <h2 class="post-title">关于</h2>
+              <div class="post-info post-detail-info">
+                <span><i class="icon-calendar-outline"></i> 2026-05-26</span>
+                
+              </div>
+              <div class="post-content" v-pre>
+                <!-- 这是一个关于页面的模板，你可以根据自己的风格随意修改。开始写你自己的故事吧。 -->
 <h3 id="heading">关于我</h3>
 <p>嗨，见字如晤，我是 Galileo Nio，一个混沌的理想主义者。</p>
 <p>坐标北京，做产品经理第0年。白天调查信息，晚上整点乱七八糟的爱好。</p>
@@ -208,23 +210,30 @@
 <hr />
 <p>本站使用 <a href="https://www.gridea.pro/">Gridea Pro</a> 搭建。</p>
 
-          </div>
+              </div>
+            </div>
+
+            
+          </main>
+
+          
+            <aside class="post-comment-sidebar" aria-label="评论区">
+              <div class="post-comment-sidebar-inner">
+                <h2 class="post-comment-title">评论</h2>
+                
+
+                
+                  <section class="giscus-container">
+                    <div id="giscus-container"></div>
+                  </section>
+                
+
+                
+              </div>
+            </aside>
+          
         </div>
-
-        
       </div>
-
-      
-        
-
-        
-          <section class="giscus-container">
-            <div id="giscus-container"></div>
-          </section>
-        
-
-        
-      
 
       <div class="site-footer">
   <div class="slogan">Notes, code, vehicles, and everything in between.</div>

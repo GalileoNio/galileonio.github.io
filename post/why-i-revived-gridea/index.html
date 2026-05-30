@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780117142">
+<link rel="shortcut icon" href="/favicon.ico?v=1780117457">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780117142">
+<link rel="stylesheet" href="/styles/main.css?v=1780117457">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -60,12 +60,12 @@
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
   <body>
-    <div id="app" class="main">
+    <div id="app" class="main post-main">
       <div class="site-header-container">
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117142" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117457" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -159,16 +159,18 @@
 </transition>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2026-05-25</span>
-            
-          </div>
-          <div class="post-content" v-pre>
-            <p>2022 年 5 月 17 日，Gridea 发布了它的最后一个版本 v0.9.3。</p>
+      <div class="content-container post-content-container">
+        <div class="post-layout has-comment-sidebar">
+          <main class="post-primary">
+            <div class="post-detail">
+              
+              <h2 class="post-title">我为什么复活了 Gridea —— 每个想写点什么的人，都值得一个更简单的开始</h2>
+              <div class="post-info post-detail-info">
+                <span><i class="icon-calendar-outline"></i> 2026-05-25</span>
+                
+              </div>
+              <div class="post-content" v-pre>
+                <p>2022 年 5 月 17 日，Gridea 发布了它的最后一个版本 v0.9.3。</p>
 <p>此后，再也没有更新过。Issues 无人回复，PR 无人合并。一个曾经帮助 28,000 多位用户搭建了自己博客的工具，就这样安静地停在了那里。</p>
 <p>我是那 28,000 人中的一个。</p>
 <!-- more -->
@@ -239,23 +241,30 @@
 <p>如果你正在读这篇文章，说明你已经选择了开始。</p>
 <p>欢迎来到 Gridea Pro。</p>
 
-          </div>
+              </div>
+            </div>
+
+            
+          </main>
+
+          
+            <aside class="post-comment-sidebar" aria-label="评论区">
+              <div class="post-comment-sidebar-inner">
+                <h2 class="post-comment-title">评论</h2>
+                
+
+                
+                  <section class="giscus-container">
+                    <div id="giscus-container"></div>
+                  </section>
+                
+
+                
+              </div>
+            </aside>
+          
         </div>
-
-        
       </div>
-
-      
-        
-
-        
-          <section class="giscus-container">
-            <div id="giscus-container"></div>
-          </section>
-        
-
-        
-      
 
       <div class="site-footer">
   <div class="slogan">Notes, code, vehicles, and everything in between.</div>

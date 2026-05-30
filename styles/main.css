@@ -1098,6 +1098,9 @@ summary {
 .home-main .site-header {
   max-width: 1080px;
 }
+.post-main .site-header {
+  max-width: 1080px;
+}
 .site-header .left {
   display: flex;
   min-width: 0;
@@ -1291,6 +1294,9 @@ a.purple-link {
   flex-direction: column;
 }
 .home-main {
+  max-width: 1080px;
+}
+.post-main {
   max-width: 1080px;
 }
 .content-container {
@@ -1490,6 +1496,9 @@ a.purple-link {
   .home-main {
     max-width: 768px;
   }
+  .post-main {
+    max-width: 768px;
+  }
   .home-content-container {
     display: flex;
     flex-direction: column;
@@ -1547,6 +1556,43 @@ a.purple-link {
 }
 .post-detail {
   padding: 32px 0;
+}
+.post-layout {
+  display: block;
+}
+.post-layout.has-comment-sidebar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 48px;
+  align-items: start;
+}
+.post-primary {
+  min-width: 0;
+}
+.post-comment-sidebar {
+  position: sticky;
+  top: 80px;
+  padding: 32px 0;
+  min-width: 0;
+}
+.post-comment-sidebar-inner {
+  min-width: 0;
+}
+.post-comment-title {
+  color: var(--c-base-black);
+  font-size: 20px;
+  line-height: 1.4;
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #f3f3f3;
+}
+.post-comment-sidebar #gitalk-container,
+.post-comment-sidebar #disqus_thread,
+.post-comment-sidebar .giscus-container {
+  min-width: 0;
+}
+.post-comment-sidebar .giscus-container {
+  padding: 0;
 }
 .post-detail .post-title {
   font-size: 32px;
@@ -1661,6 +1707,21 @@ a.purple-link {
 .giscus-container .giscus,
 .giscus-container .giscus-frame {
   width: 100%;
+}
+@media (max-width: 860px) {
+  .post-layout.has-comment-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .post-primary,
+  .post-comment-sidebar {
+    width: 100%;
+  }
+  .post-comment-sidebar {
+    position: static;
+    padding: 24px 0 32px;
+  }
 }
 .post-content h1,
 .post-content h2,

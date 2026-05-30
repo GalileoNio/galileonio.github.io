@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780117142">
+<link rel="shortcut icon" href="/favicon.ico?v=1780117457">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780117142">
+<link rel="stylesheet" href="/styles/main.css?v=1780117457">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -60,12 +60,12 @@
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
   <body>
-    <div id="app" class="main">
+    <div id="app" class="main post-main">
       <div class="site-header-container">
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117142" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780117457" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -159,16 +159,18 @@
 </transition>
 
 
-      <div class="content-container">
-        <div class="post-detail">
-          
-          <h2 class="post-title">Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定</h2>
-          <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2026-05-25</span>
-            
-          </div>
-          <div class="post-content" v-pre>
-            <p>这篇指南会带你一步一步熟悉 Gridea Pro 的界面和操作，从写第一篇文章到把博客发布到互联网上。</p>
+      <div class="content-container post-content-container">
+        <div class="post-layout has-comment-sidebar">
+          <main class="post-primary">
+            <div class="post-detail">
+              
+              <h2 class="post-title">Gridea Pro 完全上手指南 —— 从写作到发布，一篇搞定</h2>
+              <div class="post-info post-detail-info">
+                <span><i class="icon-calendar-outline"></i> 2026-05-25</span>
+                
+              </div>
+              <div class="post-content" v-pre>
+                <p>这篇指南会带你一步一步熟悉 Gridea Pro 的界面和操作，从写第一篇文章到把博客发布到互联网上。</p>
 <!-- more -->
 <h2 id="heading">认识界面</h2>
 <p>打开 Gridea Pro 后，你会看到左侧是导航栏，右侧是内容区域。</p>
@@ -367,23 +369,30 @@
 <p>看到这里，相信你对 Gridea Pro 的使用已经有了全面的了解。</p>
 <p>这篇指南可以随时删除。祝你博客之旅愉快！</p>
 
-          </div>
+              </div>
+            </div>
+
+            
+          </main>
+
+          
+            <aside class="post-comment-sidebar" aria-label="评论区">
+              <div class="post-comment-sidebar-inner">
+                <h2 class="post-comment-title">评论</h2>
+                
+
+                
+                  <section class="giscus-container">
+                    <div id="giscus-container"></div>
+                  </section>
+                
+
+                
+              </div>
+            </aside>
+          
         </div>
-
-        
       </div>
-
-      
-        
-
-        
-          <section class="giscus-container">
-            <div id="giscus-container"></div>
-          </section>
-        
-
-        
-      
 
       <div class="site-footer">
   <div class="slogan">Notes, code, vehicles, and everything in between.</div>
