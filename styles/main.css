@@ -1306,24 +1306,27 @@ a.purple-link {
 .home-posts {
   min-width: 0;
 }
-.home-memos {
+.home-sidebar {
   position: sticky;
   top: 24px;
   padding: 32px 0;
 }
-.home-memos-header {
+.home-sidebar-section + .home-sidebar-section {
+  margin-top: 32px;
+}
+.home-sidebar-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   padding-bottom: 14px;
   border-bottom: 1px solid #f3f3f3;
 }
-.home-memos-header h2 {
+.home-sidebar-header h2 {
   color: var(--c-base-black);
   font-size: 20px;
   line-height: 1.4;
 }
-.home-memos-header a {
+.home-sidebar-header a {
   color: var(--c-base-purple);
   font-size: 13px;
 }
@@ -1354,11 +1357,70 @@ a.purple-link {
   height: auto;
 }
 .home-memo-date,
-.home-memos-empty {
+.home-sidebar-empty {
   display: block;
   margin-top: 10px;
   color: var(--c-base-gray);
   font-size: 12px;
+}
+.home-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 16px;
+}
+.home-tag {
+  color: var(--c-base-purple);
+  font-size: 13px;
+  line-height: 1.4;
+  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.28) 0);
+}
+.home-links-list {
+  padding-top: 6px;
+}
+.home-friend {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f3f3;
+}
+.home-friend-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 12px;
+}
+.home-friend-avatar-placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--c-base-purple);
+  font-size: 14px;
+  font-weight: 600;
+}
+.home-friend-info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.home-friend-info strong {
+  color: var(--c-base-black);
+  font-size: 14px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-friend-info span {
+  color: var(--c-base-gray);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .post-item {
   display: flex;
@@ -1434,10 +1496,10 @@ a.purple-link {
     gap: 0;
   }
   .home-posts,
-  .home-memos {
+  .home-sidebar {
     width: 100%;
   }
-  .home-memos {
+  .home-sidebar {
     position: static;
     padding: 16px 0 32px;
   }
