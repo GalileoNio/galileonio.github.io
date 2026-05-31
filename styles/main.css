@@ -1294,7 +1294,7 @@ a.purple-link {
   flex-direction: column;
 }
 .home-main {
-  max-width: 1080px;
+  max-width: 1200px;
 }
 .post-main {
   max-width: 1080px;
@@ -1305,14 +1305,62 @@ a.purple-link {
 }
 .home-content-container {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 48px;
+  grid-template-columns: 168px minmax(0, 1fr) 260px;
+  grid-template-areas: "category posts sidebar";
+  gap: 36px;
   align-items: start;
 }
+.home-category-nav {
+  grid-area: category;
+  position: sticky;
+  top: 24px;
+  padding: 24px 0;
+}
+.home-category-link {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: #b7bec6;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.home-category-link + .home-category-link {
+  margin-top: 14px;
+}
+.home-category-link .icon {
+  width: 26px;
+  margin-right: 12px;
+  color: currentColor;
+  font-size: 24px;
+  text-align: center;
+}
+.home-category-link:hover,
+.home-category-link.is-active {
+  color: var(--c-base-black);
+}
 .home-posts {
+  grid-area: posts;
   min-width: 0;
 }
+.home-filter-empty {
+  display: none;
+  padding: 32px 0;
+  color: var(--c-base-gray);
+  font-size: 14px;
+}
+.home-filter-empty.is-active {
+  display: block;
+}
 .home-sidebar {
+  grid-area: sidebar;
   position: sticky;
   top: 24px;
   padding: 32px 0;
@@ -1539,6 +1587,34 @@ a.purple-link {
     display: flex;
     flex-direction: column;
     gap: 0;
+  }
+  .home-category-nav {
+    position: static;
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    padding: 0 0 12px;
+    margin-bottom: 12px;
+    scrollbar-width: none;
+  }
+  .home-category-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .home-category-link {
+    flex: 0 0 auto;
+    width: auto;
+    min-height: 40px;
+    margin-right: 18px;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .home-category-link + .home-category-link {
+    margin-top: 0;
+  }
+  .home-category-link .icon {
+    width: 20px;
+    margin-right: 6px;
+    font-size: 18px;
   }
   .home-posts,
   .home-sidebar {

@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780210496">
+<link rel="shortcut icon" href="/favicon.ico?v=1780211224">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780210496">
+<link rel="stylesheet" href="/styles/main.css?v=1780211224">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780210496" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211224" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -554,6 +554,51 @@ var app = new Vue({
     if (event.key === 'Escape') {
       closeSearch()
     }
+  })
+})()
+
+;(function () {
+  var categoryButtons = Array.prototype.slice.call(document.querySelectorAll('[data-home-category-filter]'))
+  var postItems = Array.prototype.slice.call(document.querySelectorAll('.home-posts .post-item'))
+  var pagination = document.querySelector('.home-posts .pagination-container')
+  var emptyState = document.querySelector('[data-home-filter-empty]')
+
+  if (!categoryButtons.length || !postItems.length) {
+    return
+  }
+
+  function setActiveButton(activeButton) {
+    categoryButtons.forEach(function (button) {
+      button.classList.toggle('is-active', button === activeButton)
+    })
+  }
+
+  function filterPosts(categorySlug) {
+    var visibleCount = 0
+
+    postItems.forEach(function (item) {
+      var slugs = (item.getAttribute('data-category-slugs') || '').split(/\s+/)
+      var shouldShow = categorySlug === 'all' || slugs.indexOf(categorySlug) > -1
+      item.style.display = shouldShow ? '' : 'none'
+      if (shouldShow) {
+        visibleCount += 1
+      }
+    })
+
+    if (pagination) {
+      pagination.style.display = categorySlug === 'all' ? '' : 'none'
+    }
+
+    if (emptyState) {
+      emptyState.classList.toggle('is-active', visibleCount === 0)
+    }
+  }
+
+  categoryButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      setActiveButton(button)
+      filterPosts(button.getAttribute('data-home-category-filter') || 'all')
+    })
   })
 })()
 
