@@ -1515,16 +1515,20 @@ a.purple-link {
 .post-item {
   display: flex;
   justify-content: space-between;
+  gap: 16px;
   padding: 32px 0;
-  max-height: 200px;
+  min-width: 0;
 }
 .post-item .content {
   flex: 1;
+  min-width: 0;
 }
 .post-item .content .post-title {
   font-size: 22px;
   color: #0C1E29;
-  display: inline-block;
+  display: block;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .post-item .content .post-abstract {
   font-size: 14px;
@@ -1555,7 +1559,7 @@ a.purple-link {
 .post-item .feature-container {
   margin-left: 16px;
   flex-shrink: 0;
-  width: 240px;
+  width: clamp(160px, 32%, 240px);
   height: 135px;
   position: relative;
   overflow: hidden;
@@ -1575,6 +1579,32 @@ a.purple-link {
 }
 .post-info a {
   color: var(--c-base-purple);
+}
+@media (max-width: 760px) {
+  .post-item {
+    flex-direction: column;
+    height: auto;
+    padding: 24px 0;
+    max-height: none;
+  }
+  .post-item .content {
+    order: 2;
+    display: block;
+  }
+  .post-item .content .post-title {
+    margin-top: 16px;
+    font-size: 18px;
+  }
+  .post-item .feature-container {
+    margin-left: 0;
+    order: 1;
+    height: 0;
+    width: 100%;
+    padding-top: 56%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
 }
 @media (max-width: 600px) {
   .home-main {
@@ -1627,30 +1657,6 @@ a.purple-link {
   .home-sidebar {
     position: static;
     padding: 16px 0 32px;
-  }
-  .post-item {
-    flex-direction: column;
-    height: auto;
-    padding: 24px 0;
-    max-height: none;
-  }
-  .post-item .content {
-    order: 2;
-    display: block;
-  }
-  .post-item .content .post-title {
-    margin-top: 16px;
-    font-size: 18px;
-  }
-  .post-item .feature-container {
-    margin-left: 0;
-    order: 1;
-    height: 0;
-    width: 100%;
-    padding-top: 56%;
-    position: relative;
-    background-size: cover;
-    background-position: center;
   }
 }
 .pagination-container {
