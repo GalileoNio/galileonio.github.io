@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780234146">
+<link rel="shortcut icon" href="/favicon.ico?v=1780234546">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780234146">
+<link rel="stylesheet" href="/styles/main.css?v=1780234546">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -62,7 +62,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780234146" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780234546" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -453,7 +453,11 @@
     <script src="/scripts/transliteration.umd.min.js"></script>
 <script type="application/javascript">
 
-hljs.initHighlightingOnLoad()
+if (window.hljs && typeof window.hljs.highlightAll === 'function') {
+  window.hljs.highlightAll()
+} else if (window.hljs && typeof window.hljs.initHighlightingOnLoad === 'function') {
+  window.hljs.initHighlightingOnLoad()
+}
 
 var app = new Vue({
   el: '#app',
@@ -738,6 +742,8 @@ var app = new Vue({
   var bookmarkKey = 'fly:bookmarked:' + window.location.pathname
 
   if (shareButton) {
+    var sharePopover = null
+
     function setShareFeedback(success) {
       shareButton.classList.toggle('is-copied', success)
       shareButton.setAttribute('aria-label', success ? '链接已复制' : '分享文章')
@@ -750,6 +756,55 @@ var app = new Vue({
           shareButton.setAttribute('title', '分享文章')
         }, 1600)
       }
+    }
+
+    function closeSharePopover() {
+      if (sharePopover && sharePopover.parentNode) {
+        sharePopover.parentNode.removeChild(sharePopover)
+      }
+      sharePopover = null
+    }
+
+    function openSharePopover(url) {
+      closeSharePopover()
+
+      sharePopover = document.createElement('div')
+      sharePopover.className = 'post-share-popover'
+      var inner = document.createElement('div')
+      var closeButton = document.createElement('button')
+      var label = document.createElement('label')
+      var input = document.createElement('input')
+
+      inner.className = 'post-share-popover-inner'
+      closeButton.className = 'post-share-popover-close'
+      closeButton.type = 'button'
+      closeButton.setAttribute('aria-label', '关闭')
+      closeButton.textContent = '×'
+      label.className = 'post-share-popover-label'
+      label.textContent = '复制文章链接'
+      input.className = 'post-share-popover-input'
+      input.type = 'text'
+      input.readOnly = true
+      input.value = url
+
+      inner.appendChild(closeButton)
+      inner.appendChild(label)
+      inner.appendChild(input)
+      sharePopover.appendChild(inner)
+      document.body.appendChild(sharePopover)
+
+      if (input) {
+        input.focus()
+        input.select()
+      }
+      if (closeButton) {
+        closeButton.addEventListener('click', closeSharePopover)
+      }
+      sharePopover.addEventListener('click', function (event) {
+        if (event.target === sharePopover) {
+          closeSharePopover()
+        }
+      })
     }
 
     function fallbackCopyLink() {
@@ -790,6 +845,9 @@ var app = new Vue({
 
       document.body.removeChild(textarea)
       setShareFeedback(copied)
+      if (!copied) {
+        openSharePopover(url)
+      }
       return Promise.resolve(copied)
     }
 
@@ -807,6 +865,12 @@ var app = new Vue({
       }
 
       fallbackCopyLink()
+    })
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        closeSharePopover()
+      }
     })
   }
 

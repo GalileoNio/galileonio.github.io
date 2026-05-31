@@ -1724,6 +1724,49 @@ a.purple-link {
   color: var(--c-base-green);
   background: transparent;
 }
+.post-share-popover {
+  position: fixed;
+  inset: 0;
+  z-index: 2048;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 30, 41, 0.16);
+}
+.post-share-popover-inner {
+  position: relative;
+  width: min(420px, 100%);
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 16px 48px rgba(12, 30, 41, 0.12);
+}
+.post-share-popover-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  border: 0;
+  color: var(--c-base-gray);
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.post-share-popover-label {
+  display: block;
+  color: var(--c-base-black);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.post-share-popover-input {
+  width: 100%;
+  border: 1px solid #e6e8eb;
+  color: var(--c-base-blacklight);
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
 .post-action-button .icon,
 .post-action-metric .icon {
   font-size: 20px;
