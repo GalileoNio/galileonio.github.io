@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780120461">
+<link rel="shortcut icon" href="/favicon.ico?v=1780210496">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780120461">
+<link rel="stylesheet" href="/styles/main.css?v=1780210496">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780120461" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780210496" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -532,6 +532,38 @@ var app = new Vue({
       closeSearch()
     }
   })
+})()
+
+;(function () {
+  var refreshButton = document.querySelector('[data-memo-refresh]')
+  var memoItems = Array.prototype.slice.call(document.querySelectorAll('[data-memo-item]'))
+
+  if (!refreshButton || memoItems.length <= 3) {
+    return
+  }
+
+  function showMemos(indexes) {
+    memoItems.forEach(function (item, index) {
+      item.classList.toggle('is-hidden', indexes.indexOf(index) === -1)
+    })
+  }
+
+  function pickRandomMemos() {
+    var indexes = memoItems.map(function (_, index) {
+      return index
+    })
+
+    for (var i = indexes.length - 1; i > 0; i -= 1) {
+      var randomIndex = Math.floor(Math.random() * (i + 1))
+      var current = indexes[i]
+      indexes[i] = indexes[randomIndex]
+      indexes[randomIndex] = current
+    }
+
+    showMemos(indexes.slice(0, 3))
+  }
+
+  refreshButton.addEventListener('click', pickRandomMemos)
 })()
 
 </script>

@@ -1336,6 +1336,11 @@ a.purple-link {
   color: var(--c-base-purple);
   font-size: 13px;
 }
+.home-sidebar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
 .home-sidebar-more {
   display: inline-flex;
   align-items: center;
@@ -1347,12 +1352,30 @@ a.purple-link {
 .home-sidebar-more .icon-arrow-ios-forward-outline {
   font-size: 18px;
 }
+.home-sidebar-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  color: var(--c-base-purple);
+  background: transparent;
+  cursor: pointer;
+}
+.home-sidebar-icon-button .icon-sync-outline {
+  font-size: 16px;
+}
 .home-memos-list {
   padding-top: 4px;
 }
 .home-memo-item {
   padding: 16px 0;
   border-bottom: 1px solid #f3f3f3;
+}
+.home-memo-item.is-hidden {
+  display: none;
 }
 .home-memo-content {
   color: var(--c-base-blacklight);
@@ -1383,14 +1406,16 @@ a.purple-link {
 .home-tags-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0;
   padding-top: 16px;
 }
 .home-tag {
   color: var(--c-base-purple);
-  font-size: 13px;
-  line-height: 1.4;
-  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.28) 0);
+  padding: 4px 8px;
+  display: inline-block;
+  border: 2px solid var(--c-base-purple);
+  margin: 0 8px 8px 0;
+  border-radius: 16px;
 }
 .home-links-list {
   padding-top: 6px;
