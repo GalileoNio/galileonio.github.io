@@ -1720,6 +1720,10 @@ a.purple-link {
   color: var(--c-base-purple);
   background: transparent;
 }
+.post-action-button.is-copied {
+  color: var(--c-base-green);
+  background: transparent;
+}
 .post-action-button .icon,
 .post-action-metric .icon {
   font-size: 20px;
