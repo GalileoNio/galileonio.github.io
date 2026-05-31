@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780211224">
+<link rel="shortcut icon" href="/favicon.ico?v=1780211433">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780211224">
+<link rel="stylesheet" href="/styles/main.css?v=1780211433">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211224" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211433" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -161,6 +161,31 @@
 
       <div class="content-container post-content-container">
         <div class="post-layout has-comment-sidebar">
+          <aside class="post-action-sidebar" aria-label="文章工具栏">
+            <a class="post-action-button" href="#post-content" aria-label="跳转到正文">
+              <i class="icon icon-book-open-outline" aria-hidden="true"></i>
+            </a>
+            <div class="post-action-metric" title="阅读时间">
+              <i class="icon icon-flash-outline" aria-hidden="true"></i>
+              <span>8</span>
+            </div>
+            <div class="post-action-metric" title="字数">
+              <i class="icon icon-edit-2-outline" aria-hidden="true"></i>
+              <span>5033</span>
+            </div>
+            
+              <a class="post-action-button" href="#post-comments" aria-label="跳转到评论">
+                <i class="icon icon-message-square-outline" aria-hidden="true"></i>
+              </a>
+            
+            <button class="post-action-button" type="button" aria-label="分享文章" data-post-share>
+              <i class="icon icon-share-outline" aria-hidden="true"></i>
+            </button>
+            <button class="post-action-button" type="button" aria-label="收藏文章" data-post-bookmark>
+              <i class="icon icon-bookmark-outline" aria-hidden="true"></i>
+            </button>
+          </aside>
+
           <main class="post-primary">
             <div class="post-detail">
               
@@ -169,7 +194,7 @@
                 <span><i class="icon-calendar-outline"></i> 2019-07-30</span>
                 
               </div>
-              <div class="post-content" v-pre>
+              <div id="post-content" class="post-content" v-pre>
                 <p>碎语：装港版的原因<br />
 中了QQ空间病毒（我想这一定是个病毒，然后点开来验证我的想法<img src="/post/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan.assets/coolapk_emotion_1019_biaomiankuqi.png" alt="表面哭泣" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_1019_biaomiankuqi.png'">），然后就老是弹色情广告，左下角还写着谷歌广告（真当我没见过谷歌的广告？<img src="/post/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan.assets/coolapk_emotion_67_mojinghuaji.png" alt="墨镜滑稽" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_67_mojinghuaji.png'">）还有一个原因是之前升级了蜜汁出现的7月第二次更新包后返回键特别不好使，怎么个不好使？连按几次都没有反应（就是按钮闪了表示我按了，但是程序不理我，难道是我按太快了它没反应过来？<img src="/post/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan/a60-bu-yuan-qi-ban-shang-che-gang-ban-yi-zhou-ti-yan.assets/coolapk_emotion_63_liuhanhuaji.png" alt="流汗滑稽" onerror="this.onerror=null;this.src='/post-images/coolapk_emotion_63_liuhanhuaji.png'">）。重装之后谷歌商店不好使，就想来刷港版。</p>
 <p>安装过程和问题排查<br />
@@ -242,7 +267,7 @@
           </main>
 
           
-            <aside class="post-comment-sidebar" aria-label="评论区">
+            <aside id="post-comments" class="post-comment-sidebar" aria-label="评论区">
               <div class="post-comment-sidebar-inner">
                 <h2 class="post-comment-title">评论</h2>
                 
@@ -549,6 +574,48 @@ var app = new Vue({
       closeSearch()
     }
   })
+})()
+
+;(function () {
+  var shareButton = document.querySelector('[data-post-share]')
+  var bookmarkButton = document.querySelector('[data-post-bookmark]')
+  var bookmarkKey = 'fly:bookmarked:' + window.location.pathname
+
+  if (shareButton) {
+    shareButton.addEventListener('click', function () {
+      var shareData = {
+        title: document.title,
+        url: window.location.href,
+      }
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(function () {})
+        return
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).catch(function () {})
+      }
+    })
+  }
+
+  if (bookmarkButton) {
+    try {
+      bookmarkButton.classList.toggle('is-active', localStorage.getItem(bookmarkKey) === '1')
+    } catch (_) {}
+
+    bookmarkButton.addEventListener('click', function () {
+      var nextState = !bookmarkButton.classList.contains('is-active')
+      bookmarkButton.classList.toggle('is-active', nextState)
+      try {
+        if (nextState) {
+          localStorage.setItem(bookmarkKey, '1')
+        } else {
+          localStorage.removeItem(bookmarkKey)
+        }
+      } catch (_) {}
+    })
+  }
 })()
 
 ;(function () {

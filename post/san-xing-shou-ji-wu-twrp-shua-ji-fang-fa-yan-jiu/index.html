@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780211224">
+<link rel="shortcut icon" href="/favicon.ico?v=1780211433">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780211224">
+<link rel="stylesheet" href="/styles/main.css?v=1780211433">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211224" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211433" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -161,6 +161,31 @@
 
       <div class="content-container post-content-container">
         <div class="post-layout has-comment-sidebar">
+          <aside class="post-action-sidebar" aria-label="文章工具栏">
+            <a class="post-action-button" href="#post-content" aria-label="跳转到正文">
+              <i class="icon icon-book-open-outline" aria-hidden="true"></i>
+            </a>
+            <div class="post-action-metric" title="阅读时间">
+              <i class="icon icon-flash-outline" aria-hidden="true"></i>
+              <span>16</span>
+            </div>
+            <div class="post-action-metric" title="字数">
+              <i class="icon icon-edit-2-outline" aria-hidden="true"></i>
+              <span>9774</span>
+            </div>
+            
+              <a class="post-action-button" href="#post-comments" aria-label="跳转到评论">
+                <i class="icon icon-message-square-outline" aria-hidden="true"></i>
+              </a>
+            
+            <button class="post-action-button" type="button" aria-label="分享文章" data-post-share>
+              <i class="icon icon-share-outline" aria-hidden="true"></i>
+            </button>
+            <button class="post-action-button" type="button" aria-label="收藏文章" data-post-bookmark>
+              <i class="icon icon-bookmark-outline" aria-hidden="true"></i>
+            </button>
+          </aside>
+
           <main class="post-primary">
             <div class="post-detail">
               
@@ -186,7 +211,7 @@
                   </span>
                 
               </div>
-              <div class="post-content" v-pre>
+              <div id="post-content" class="post-content" v-pre>
                 <p>本文为酷安用户 <a href="https://www.coolapk.com/u/%E5%A4%8F%E5%85%83%E7%B4%A0">@夏元素</a> 原创内容，未经许可不得转载，不许对文章本身以及里面用到的任何工具、任何系统包进行收费，这些工具和系统著作权归所有者所有，Samsung、三星是三星（中国）的标志。本文仅发表于酷安社区、wv开头的论坛和我自己的博客。所需文件和工具下载：<br />
 天翼云盘：<a href="https://cloud.189.cn/t/B7RRNrYNN36r">查看链接</a> (访问码:zpq3)<br />
 阿里网盘：<a href="https://www.aliyundrive.com/s/1Sy7nXXZMQH">查看链接</a></p>
@@ -286,7 +311,7 @@ Android 11：LineageOS（AndyYan 制作的）但是有些问题，一段时间�
           </main>
 
           
-            <aside class="post-comment-sidebar" aria-label="评论区">
+            <aside id="post-comments" class="post-comment-sidebar" aria-label="评论区">
               <div class="post-comment-sidebar-inner">
                 <h2 class="post-comment-title">评论</h2>
                 
@@ -593,6 +618,48 @@ var app = new Vue({
       closeSearch()
     }
   })
+})()
+
+;(function () {
+  var shareButton = document.querySelector('[data-post-share]')
+  var bookmarkButton = document.querySelector('[data-post-bookmark]')
+  var bookmarkKey = 'fly:bookmarked:' + window.location.pathname
+
+  if (shareButton) {
+    shareButton.addEventListener('click', function () {
+      var shareData = {
+        title: document.title,
+        url: window.location.href,
+      }
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(function () {})
+        return
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).catch(function () {})
+      }
+    })
+  }
+
+  if (bookmarkButton) {
+    try {
+      bookmarkButton.classList.toggle('is-active', localStorage.getItem(bookmarkKey) === '1')
+    } catch (_) {}
+
+    bookmarkButton.addEventListener('click', function () {
+      var nextState = !bookmarkButton.classList.contains('is-active')
+      bookmarkButton.classList.toggle('is-active', nextState)
+      try {
+        if (nextState) {
+          localStorage.setItem(bookmarkKey, '1')
+        } else {
+          localStorage.removeItem(bookmarkKey)
+        }
+      } catch (_) {}
+    })
+  }
 })()
 
 ;(function () {

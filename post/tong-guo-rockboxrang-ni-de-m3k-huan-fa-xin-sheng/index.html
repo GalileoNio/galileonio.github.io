@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780211224">
+<link rel="shortcut icon" href="/favicon.ico?v=1780211433">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780211224">
+<link rel="stylesheet" href="/styles/main.css?v=1780211433">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211224" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211433" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -161,6 +161,31 @@
 
       <div class="content-container post-content-container">
         <div class="post-layout has-comment-sidebar">
+          <aside class="post-action-sidebar" aria-label="文章工具栏">
+            <a class="post-action-button" href="#post-content" aria-label="跳转到正文">
+              <i class="icon icon-book-open-outline" aria-hidden="true"></i>
+            </a>
+            <div class="post-action-metric" title="阅读时间">
+              <i class="icon icon-flash-outline" aria-hidden="true"></i>
+              <span>7</span>
+            </div>
+            <div class="post-action-metric" title="字数">
+              <i class="icon icon-edit-2-outline" aria-hidden="true"></i>
+              <span>4354</span>
+            </div>
+            
+              <a class="post-action-button" href="#post-comments" aria-label="跳转到评论">
+                <i class="icon icon-message-square-outline" aria-hidden="true"></i>
+              </a>
+            
+            <button class="post-action-button" type="button" aria-label="分享文章" data-post-share>
+              <i class="icon icon-share-outline" aria-hidden="true"></i>
+            </button>
+            <button class="post-action-button" type="button" aria-label="收藏文章" data-post-bookmark>
+              <i class="icon icon-bookmark-outline" aria-hidden="true"></i>
+            </button>
+          </aside>
+
           <main class="post-primary">
             <div class="post-detail">
               
@@ -173,7 +198,7 @@
                 <span><i class="icon-calendar-outline"></i> 2020-09-04</span>
                 
               </div>
-              <div class="post-content" v-pre>
+              <div id="post-content" class="post-content" v-pre>
                 <p><a href="https://www.coolapk.com/t/%E9%A3%9E%E5%82%B2m3k?type=12">#飞傲m3k#</a> <a href="https://www.coolapk.com/t/Rockbox?type=12">#Rockbox#</a></p>
 <p><img src="/post/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng/tong-guo-rockboxrang-ni-de-m3k-huan-fa-xin-sheng.assets/1080406_e5daa8bf_9002_8172@1080x100.jpeg.m.jpg" alt="img" onerror="this.onerror=null;this.src='/post-images/1080406_e5daa8bf_9002_8172@1080x100.jpeg.m.jpg'"></p>
 <p>M3K 在学校被我的同学喷为智商税（泪目），官方也消极怠工，一年挤一次牙膏。闲来无事刷酷安发现 M3K 设备区全是出设备的。在所剩无几的测评中我找到 <a href="https://www.coolapk.com/u/%E8%AF%A5%E7%94%A8%E6%88%B7%E6%B6%89%E5%AB%8C%E6%BB%91%E7%A8%BD">@该用户涉嫌滑稽</a> 的开箱图文的评论区：</p>
@@ -245,7 +270,7 @@
           </main>
 
           
-            <aside class="post-comment-sidebar" aria-label="评论区">
+            <aside id="post-comments" class="post-comment-sidebar" aria-label="评论区">
               <div class="post-comment-sidebar-inner">
                 <h2 class="post-comment-title">评论</h2>
                 
@@ -552,6 +577,48 @@ var app = new Vue({
       closeSearch()
     }
   })
+})()
+
+;(function () {
+  var shareButton = document.querySelector('[data-post-share]')
+  var bookmarkButton = document.querySelector('[data-post-bookmark]')
+  var bookmarkKey = 'fly:bookmarked:' + window.location.pathname
+
+  if (shareButton) {
+    shareButton.addEventListener('click', function () {
+      var shareData = {
+        title: document.title,
+        url: window.location.href,
+      }
+
+      if (navigator.share) {
+        navigator.share(shareData).catch(function () {})
+        return
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).catch(function () {})
+      }
+    })
+  }
+
+  if (bookmarkButton) {
+    try {
+      bookmarkButton.classList.toggle('is-active', localStorage.getItem(bookmarkKey) === '1')
+    } catch (_) {}
+
+    bookmarkButton.addEventListener('click', function () {
+      var nextState = !bookmarkButton.classList.contains('is-active')
+      bookmarkButton.classList.toggle('is-active', nextState)
+      try {
+        if (nextState) {
+          localStorage.setItem(bookmarkKey, '1')
+        } else {
+          localStorage.removeItem(bookmarkKey)
+        }
+      } catch (_) {}
+    })
+  }
 })()
 
 ;(function () {
