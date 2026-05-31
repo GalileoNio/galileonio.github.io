@@ -1706,19 +1706,32 @@ a.purple-link {
 .post-action-button {
   border-radius: 50%;
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.2s ease;
 }
 .post-action-button:hover {
   color: var(--c-base-black);
-  background: #f5f6f8;
+  background: transparent;
 }
 .post-action-button.is-active {
   color: var(--c-base-purple);
-  background: #f5f6f8;
+  background: transparent;
 }
 .post-action-button .icon,
 .post-action-metric .icon {
   font-size: 20px;
+}
+.post-action-button.is-active .icon-bookmark-outline {
+  position: relative;
+}
+.post-action-button.is-active .icon-bookmark-outline:after {
+  content: "\e926";
+  position: absolute;
+  inset: 0;
+  font-family: 'icomoon' !important;
+  font-size: inherit;
+  line-height: 1;
+  color: currentColor;
+  -webkit-text-stroke: 1.8px currentColor;
 }
 .post-action-metric {
   flex-direction: column;

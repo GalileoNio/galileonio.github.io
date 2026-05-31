@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780211433">
+<link rel="shortcut icon" href="/favicon.ico?v=1780212104">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780211433">
+<link rel="stylesheet" href="/styles/main.css?v=1780212104">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -62,7 +62,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780211433" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780212104" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -507,6 +507,20 @@ var app = new Vue({
 })()
 
 ;(function () {
+  var scrollTopButton = document.querySelector('[data-scroll-top]')
+  if (!scrollTopButton) {
+    return
+  }
+
+  scrollTopButton.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  })
+})()
+
+;(function () {
   var shareButton = document.querySelector('[data-post-share]')
   var bookmarkButton = document.querySelector('[data-post-bookmark]')
   var bookmarkKey = 'fly:bookmarked:' + window.location.pathname
@@ -530,13 +544,29 @@ var app = new Vue({
   }
 
   if (bookmarkButton) {
+    function updateBookmarkIcon(isActive) {
+      var icon = bookmarkButton.querySelector('i')
+      if (!icon) {
+        return
+      }
+
+      if (isActive) {
+        icon.className = 'icon icon-bookmark-outline'
+      } else {
+        icon.className = 'icon icon-bookmark-outline'
+      }
+    }
+
     try {
-      bookmarkButton.classList.toggle('is-active', localStorage.getItem(bookmarkKey) === '1')
+      var bookmarked = localStorage.getItem(bookmarkKey) === '1'
+      bookmarkButton.classList.toggle('is-active', bookmarked)
+      updateBookmarkIcon(bookmarked)
     } catch (_) {}
 
     bookmarkButton.addEventListener('click', function () {
       var nextState = !bookmarkButton.classList.contains('is-active')
       bookmarkButton.classList.toggle('is-active', nextState)
+      updateBookmarkIcon(nextState)
       try {
         if (nextState) {
           localStorage.setItem(bookmarkKey, '1')
