@@ -22,7 +22,13 @@
       <guid isPermaLink="true">https://galileonio.github.io/post/3x3de-zi-mu-biao/</guid>
       <pubDate>Thu, 04 Jun 2026 02:57:40 +0800</pubDate>
       <description><![CDATA[<p>昨天一晚上没睡着，思来想去就画一下字母表吧。不得不说3x3确实太小了点，虽然有些字母有别的画法可以避免重复，但是仔细斟酌还是目前这样最完美。<a href="https://www.xiaohongshu.com/search_result?keyword=%E6%9C%89%E8%B6%A3%E7%9A%84%E5%9B%BE%E5%BD%A2&amp;type=54&amp;source=web_note_detail_r10">#有趣的图形</a> <a href="https://www.xiaohongshu.com/search_result?keyword=%E9%97%B2%E5%BE%97%E8%9B%8B%E7%96%BC&amp;type=54&amp;source=web_note_detail_r10">#闲得蛋疼</a> <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%A4%B1%E7%9C%A0&amp;type=54&amp;source=web_note_detail_r10">#失眠</a> <a href="https://www.xiaohongshu.com/search_result?keyword=%E5%AD%97%E6%AF%8D%E8%A1%A8&amp;type=54&amp;source=web_note_detail_r10">#字母表</a></p>
-<p><img src="3x3de-zi-mu-biao.assets/image-20260603110019642.png" alt="image-20260603110019642" /><img src="3x3de-zi-mu-biao.assets/image-20260603110028447.png" alt="image-20260603110028447" /><img src="3x3de-zi-mu-biao.assets/image-20260603110038397.png" alt="image-20260603110028447" /><img src="3x3de-zi-mu-biao.assets/image-20260603110052726.png" alt="image-20260603110052726" /></p>
+<h1 id="heading">罗马字母表</h1>
+<h2 id="v1">v1</h2>
+<p><img src="3x3de-zi-mu-biao.assets/image-20260603110019642.png" alt="image-20260603110019642" /><img src="3x3de-zi-mu-biao.assets/image-20260603110028447.png" alt="image-20260603110028447" /></p>
+<h2 id="v2">v2</h2>
+<p><img src="3x3de-zi-mu-biao.assets/image-20260605141635514.png" alt="image-20260605141635514" /></p>
+<h1 id="heading-1">希腊字母表</h1>
+<p><img src="3x3de-zi-mu-biao.assets/image-20260603110038397.png" alt="image-20260603110028447" /><img src="3x3de-zi-mu-biao.assets/image-20260603110052726.png" alt="image-20260603110052726" /></p>
 ]]></description>
       <category>小红书</category>
       <enclosure url="https://galileonio.github.io/post-images/3x3de-zi-mu-biao.png" length="0" type="image/png"></enclosure>
@@ -31,7 +37,7 @@
       <title>在Github Pages 和 Vercel 上同时部署 Hexo 博客</title>
       <link>https://galileonio.github.io/post/%E5%9C%A8Github-Pages-%E5%92%8C-Vercel-%E4%B8%8A%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2-Hexo-%E5%8D%9A%E5%AE%A2/</link>
       <guid isPermaLink="true">https://galileonio.github.io/post/%E5%9C%A8Github-Pages-%E5%92%8C-Vercel-%E4%B8%8A%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2-Hexo-%E5%8D%9A%E5%AE%A2/</guid>
-      <pubDate>Mon, 30 Dec 2024 12:06:08 +0000</pubDate>
+      <pubDate>Mon, 30 Dec 2024 12:06:08 +0800</pubDate>
       <description><![CDATA[<h1 id="github-pages--vercel--hexo-">在Github Pages 和 Vercel 上同时部署 Hexo 博客</h1>
 <h2 id="vercel">Vercel</h2>
 <p><a href="https://vercel.com/">Vercel</a> 是一个云平台，使开发人员能够托管 Jamstack 网站和网络服务，这些网站和服务可即时部署，自动扩展，无需监督，零配置。 他们提供全球边缘网络、SSL 加密、资源压缩、缓存失效等服务。</p>
