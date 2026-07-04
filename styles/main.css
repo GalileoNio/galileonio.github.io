@@ -1790,6 +1790,19 @@ a.purple-link {
   color: var(--c-base-green);
   background: transparent;
 }
+.post-action-like {
+  cursor: pointer;
+}
+.post-action-like:hover {
+  color: var(--c-base-black);
+}
+.post-action-like.is-active .icon {
+  color: #111827;
+  background: #ffd84d;
+}
+.post-action-like:disabled {
+  cursor: default;
+}
 .post-share-popover {
   position: fixed;
   inset: 0;

@@ -12,9 +12,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1780646346">
+<link rel="shortcut icon" href="/favicon.ico?v=1783167816">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1780646346">
+<link rel="stylesheet" href="/styles/main.css?v=1783167816">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -62,7 +62,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1780646346" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1783167816" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -633,6 +633,131 @@ var app = new Vue({
       } catch (_) {}
     })
   }
+})()
+
+;(function () {
+  var likeButton = document.querySelector('[data-post-like]')
+  var likeCount = document.querySelector('[data-post-like-count]')
+
+  if (!likeButton || !likeCount) {
+    return
+  }
+
+  var supabaseUrl = "".replace(/\/+$/, '')
+  var supabaseAnonKey = ""
+  var slug = likeButton.getAttribute('data-post-slug') || window.location.pathname
+  var likedKey = 'fly:liked:' + slug
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    likeButton.disabled = true
+    likeButton.setAttribute('title', '请先配置 Supabase 点赞')
+    return
+  }
+
+  function getClientId() {
+    var key = 'fly:like-client-id'
+    try {
+      var saved = localStorage.getItem(key)
+      if (saved) {
+        return saved
+      }
+
+      var id = window.crypto && window.crypto.randomUUID
+        ? window.crypto.randomUUID()
+        : String(Date.now()) + String(Math.random()).slice(2)
+      localStorage.setItem(key, id)
+      return id
+    } catch (_) {
+      return String(Date.now()) + String(Math.random()).slice(2)
+    }
+  }
+
+  function request(path, options) {
+    options = options || {}
+    options.headers = Object.assign({
+      apikey: supabaseAnonKey,
+      Authorization: 'Bearer ' + supabaseAnonKey,
+    }, options.headers || {})
+    return fetch(supabaseUrl + '/rest/v1/' + path, options)
+  }
+
+  function callRpc(name, body) {
+    return request('rpc/' + name, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error(name + ' failed')
+        }
+        return response.json()
+      })
+      .then(function (count) {
+        renderCount(Number(count))
+        return count
+      })
+  }
+
+  function setLiked(liked) {
+    likeButton.classList.toggle('is-active', liked)
+    likeButton.setAttribute('aria-pressed', liked ? 'true' : 'false')
+    likeButton.setAttribute('aria-label', liked ? '取消点赞' : '点赞文章')
+    likeButton.setAttribute('title', liked ? '取消点赞' : '点赞文章')
+  }
+
+  function renderCount(count) {
+    likeCount.textContent = Number.isFinite(count) ? count : 0
+  }
+
+  function loadCount() {
+    return callRpc('post_like_count', { p_slug: slug }).catch(function () {})
+  }
+
+  try {
+    setLiked(localStorage.getItem(likedKey) === '1')
+  } catch (_) {
+    setLiked(false)
+  }
+
+  loadCount()
+
+  function likePost() {
+    return callRpc('like_post', {
+      p_slug: slug,
+      p_client_id: getClientId(),
+    })
+      .then(function () {
+        try {
+          localStorage.setItem(likedKey, '1')
+        } catch (_) {}
+        setLiked(true)
+      })
+  }
+
+  function unlikePost() {
+    return callRpc('unlike_post', {
+      p_slug: slug,
+      p_client_id: getClientId(),
+    })
+      .then(function () {
+        try {
+          localStorage.removeItem(likedKey)
+        } catch (_) {}
+        setLiked(false)
+      })
+  }
+
+  likeButton.addEventListener('click', function () {
+    likeButton.disabled = true
+    ;(likeButton.classList.contains('is-active') ? unlikePost() : likePost())
+      .catch(function () {})
+      .finally(function () {
+        likeButton.disabled = false
+      })
+  })
 })()
 
 ;(function () {
