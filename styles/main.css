@@ -1792,6 +1792,7 @@ a.purple-link {
 }
 .post-action-like {
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 .post-action-like:hover {
   color: var(--c-base-black);
