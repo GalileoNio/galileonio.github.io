@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1784013148">
+<link rel="shortcut icon" href="/favicon.ico?v=1784182553">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1784013148">
+<link rel="stylesheet" href="/styles/main.css?v=1784182553">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1784013148" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1784182553" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -169,12 +169,8 @@
               <i class="icon icon-flash-outline" aria-hidden="true"></i>
               <span data-post-like-count>0</span>
             </button>
-            <div class="post-action-metric" title="字数">
-              <i class="icon icon-edit-2-outline" aria-hidden="true"></i>
-              <span>106</span>
-            </div>
             
-              <a class="post-action-button" href="#post-comments" aria-label="跳转到评论">
+              <a class="post-action-button" href="#post-comments" aria-label="跳转到评论" data-comment-scroll>
                 <i class="icon icon-message-square-outline" aria-hidden="true"></i>
               </a>
             
@@ -197,6 +193,8 @@
               <h2 class="post-title">好奇心🤔️和三分钟热度🔥️造就的项目列表</h2>
               <div class="post-info post-detail-info">
                 <span><i class="icon-calendar-outline"></i> 2026-06-03</span>
+                <span><i class="icon icon-edit-2-outline"></i> 106 字</span>
+                <span><i class="icon icon-flash-outline"></i> 1 分钟</span>
                 
               </div>
               <div id="post-content" class="post-content" v-pre>
@@ -533,6 +531,22 @@ var app = new Vue({
       top: 0,
       behavior: 'smooth',
     })
+  })
+})()
+
+;(function () {
+  var commentButton = document.querySelector('[data-comment-scroll]')
+  var commentSidebar = document.getElementById('post-comments')
+
+  if (!commentButton || !commentSidebar) {
+    return
+  }
+
+  commentButton.addEventListener('click', function (event) {
+    if (window.matchMedia('(min-width: 861px)').matches) {
+      event.preventDefault()
+      commentSidebar.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   })
 })()
 
