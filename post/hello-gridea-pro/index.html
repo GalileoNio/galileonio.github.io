@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="/favicon.ico?v=1784183574">
+<link rel="shortcut icon" href="/favicon.ico?v=1784185447">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="/styles/main.css?v=1784183574">
+<link rel="stylesheet" href="/styles/main.css?v=1784185447">
 
   <link rel="alternate" type="application/rss+xml" title="GalileoNio&#39;s 猫窝" href="/feed.xml">
 
@@ -65,7 +65,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://galileonio.github.io">
-        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1784183574" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://galileonio.github.io/images/avatar.png?v=1784185447" alt="" width="32px" height="32px">
       </a>
       <a href="https://galileonio.github.io">
         <h1 class="site-title">GalileoNio&#39;s 猫窝</h1>
@@ -885,6 +885,149 @@ var app = new Vue({
         likeButton.disabled = false
       })
   })
+})()
+
+;(function () {
+  var hero = document.querySelector('[data-home-hero]')
+
+  if (!hero) {
+    return
+  }
+
+  var sources = Array.prototype.slice.call(hero.querySelectorAll('[data-hero-source]')).map(function (source) {
+    return {
+      link: source.getAttribute('data-link') || '#',
+      image: source.getAttribute('data-image') || '',
+      title: source.getAttribute('data-title') || '',
+    }
+  })
+  var previousSlot = hero.querySelector('[data-hero-slot="previous"]')
+  var currentSlot = hero.querySelector('[data-hero-slot="current"]')
+  var nextSlot = hero.querySelector('[data-hero-slot="next"]')
+  var previousButton = hero.querySelector('[data-hero-prev]')
+  var nextButton = hero.querySelector('[data-hero-next]')
+  var currentIndex = 0
+  var timer = null
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!sources.length || !previousSlot || !currentSlot || !nextSlot) {
+    return
+  }
+
+  function setTitleColors(slot, image) {
+    try {
+      var canvas = document.createElement('canvas')
+      var context = canvas.getContext('2d', { willReadFrequently: true })
+      var size = 32
+      canvas.width = size
+      canvas.height = size
+      context.drawImage(image, 0, 0, size, size)
+
+      var pixels = context.getImageData(0, 0, size, size).data
+      var red = 0
+      var green = 0
+      var blue = 0
+      var count = 0
+
+      for (var index = 0; index < pixels.length; index += 4) {
+        if (pixels[index + 3] < 128) {
+          continue
+        }
+        red += pixels[index]
+        green += pixels[index + 1]
+        blue += pixels[index + 2]
+        count += 1
+      }
+
+      if (!count) {
+        return
+      }
+
+      red = Math.round(red / count)
+      green = Math.round(green / count)
+      blue = Math.round(blue / count)
+
+      function linearChannel(value) {
+        value /= 255
+        return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4)
+      }
+
+      var luminance = 0.2126 * linearChannel(red) + 0.7152 * linearChannel(green) + 0.0722 * linearChannel(blue)
+      var textColor = (luminance + 0.05) / 0.05 >= 1.05 / (luminance + 0.05) ? '#111827' : '#fff'
+      slot.style.setProperty('--hero-title-background', 'rgb(' + red + ', ' + green + ', ' + blue + ')')
+      slot.style.setProperty('--hero-title-color', textColor)
+    } catch (_) {}
+  }
+
+  function setSlot(slot, item, isCurrent) {
+    var image = slot.querySelector('img')
+    var title = slot.querySelector('h2')
+    slot.href = item.link
+    slot.toggleAttribute('aria-current', isCurrent)
+    image.alt = item.title
+    title.textContent = item.title
+    image.onload = function () {
+      setTitleColors(slot, image)
+    }
+    image.src = item.image
+    if (image.complete && image.naturalWidth) {
+      setTitleColors(slot, image)
+    }
+  }
+
+  function renderHero() {
+    var total = sources.length
+    setSlot(previousSlot, sources[(currentIndex - 1 + total) % total], false)
+    setSlot(currentSlot, sources[currentIndex], true)
+    setSlot(nextSlot, sources[(currentIndex + 1) % total], false)
+  }
+
+  function move(step) {
+    currentIndex = (currentIndex + step + sources.length) % sources.length
+    renderHero()
+  }
+
+  function stopAutoPlay() {
+    if (timer) {
+      window.clearInterval(timer)
+      timer = null
+    }
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay()
+    if (sources.length > 1 && !reducedMotion) {
+      timer = window.setInterval(function () {
+        move(1)
+      }, 6000)
+    }
+  }
+
+  if (sources.length === 1) {
+    hero.classList.add('is-single')
+  }
+
+  if (previousButton) {
+    previousButton.addEventListener('click', function () {
+      move(-1)
+      startAutoPlay()
+    })
+  }
+  if (nextButton) {
+    nextButton.addEventListener('click', function () {
+      move(1)
+      startAutoPlay()
+    })
+  }
+
+  hero.addEventListener('mouseenter', stopAutoPlay)
+  hero.addEventListener('mouseleave', startAutoPlay)
+  hero.addEventListener('focusin', stopAutoPlay)
+  hero.addEventListener('focusout', startAutoPlay)
+
+  renderHero()
+  hero.classList.add('is-ready')
+  startAutoPlay()
 })()
 
 ;(function () {
